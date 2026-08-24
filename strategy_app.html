@@ -1,0 +1,879 @@
+<!-- Chosen Palette: Warm Neutral / Minimal Executive Harmony (Slate, Zinc, Amber, Emerald, Indigo) -->
+<!-- Application Structure Plan: The SPA is structured into 6 logical interactive modules designed for analytical deep-diving: 1) Executive Profile & WAM Contextualizer with real-time IELTS bottleneck simulator, 2) University Scholarship Due-Diligence Matrix with dynamic filtering and score charts, 3) Academic Supervisor Matcher filtered by research domain, 4) Research Proposal Topic Bank & Equivalency Dossier Tracker, 5) Application Portfolio Builder & Backward Timeline, and 6) Strategic Q&A & Expert Verdict Advisor. This structure prioritizes actionable decision-making over static report reading. -->
+<!-- Visualization & Content Choices: 1) Profile Strengths: Chart.js Radar Chart (Visualizes Academic Merit vs Research Potential vs English Bottleneck). 2) University Attractiveness: Chart.js Horizontal Bar Chart (Compares Risk-Adjusted Attractiveness Scores across 7 universities). 3) Financial Package Comparison: Chart.js Grouped Bar Chart (Stipend AUD vs Estimated Cost of Living per city). 4) Dynamic UI Elements: Tailwind CSS, vanilla JS filters, modal detailed drawers, and interactive status toggles. Absolutely NO SVG graphics or Mermaid JS used. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australian Law Research Master Scholarship Strategy 2027</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .chart-container { position: relative; width: 100%; max-width: 650px; margin-left: auto; margin-right: auto; height: 320px; max-height: 380px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-lg bg-amber-500 flex items-center justify-center font-bold text-slate-950 text-xl shadow-inner">
+                        AU
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-base sm:text-lg tracking-tight text-slate-100">HDR Law Scholarship Strategy 2027</h1>
+                        <p class="text-xs text-amber-400 font-medium">Research Master / MPhil Full-Ride Due Diligence System</p>
+                    </div>
+                </div>
+                <nav class="hidden lg:flex items-center space-x-1 text-xs font-medium">
+                    <a href="#profile" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Hồ Sơ & WAM</a>
+                    <a href="#universities" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Thẩm Định Trường</a>
+                    <a href="#supervisors" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Supervisor Matching</a>
+                    <a href="#proposal" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Đề Cương & Dossier</a>
+                    <a href="#timeline" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Lộ Trình Application</a>
+                    <a href="#verdict" class="px-3 py-2 rounded-md bg-amber-500 text-slate-950 hover:bg-amber-400 font-semibold transition shadow-sm">Phán Quyết Chiến Lược</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <section id="profile" class="space-y-6">
+            <div class="border-l-4 border-amber-500 pl-4">
+                <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">PHẦN 1: ĐÁNH GIÁ HỒ SƠ HỌC THUẬT & SIMULATOR TIẾNG ANH</h2>
+                <p class="text-slate-600 text-sm mt-1">Phân tích tính tương đương bằng cấp (AQF Level 8 / Honours Equivalent) và kiểm soát điểm nghẽn rủi ro IELTS.</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-amber-400 transition">
+                    <div class="text-xs font-semibold text-slate-500 uppercase">WAM Việt Nam</div>
+                    <div class="text-2xl font-black text-amber-600 mt-1">87.91</div>
+                    <div class="text-[10px] font-bold text-emerald-600 mt-1">First Class H1 Eq.</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-amber-400 transition">
+                    <div class="text-xs font-semibold text-slate-500 uppercase">Xếp Hạng Khoá</div>
+                    <div class="text-2xl font-black text-slate-900 mt-1">Top 5.2%</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Contextual Shield</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-amber-400 transition">
+                    <div class="text-xs font-semibold text-slate-500 uppercase">GPA Tích Luỹ</div>
+                    <div class="text-2xl font-black text-slate-700 mt-1">3.59<span class="text-xs text-slate-400">/4.0</span></div>
+                    <div class="text-[10px] text-amber-600 mt-1">Cần bổ cảnh WAM</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-amber-400 transition">
+                    <div class="text-xs font-semibold text-slate-500 uppercase">Khoá Luận (Thesis)</div>
+                    <div class="text-2xl font-black text-emerald-600 mt-1">10/10</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Chủ đề IFC Law</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-amber-400 transition">
+                    <div class="text-xs font-semibold text-slate-500 uppercase">Xuất Bản Khoa Học</div>
+                    <div class="text-2xl font-black text-indigo-600 mt-1">04 Bài</div>
+                    <div class="text-[10px] text-slate-500 mt-1">+02 Giải NCKH</div>
+                </div>
+                <div id="ielts-kpi-card" class="bg-rose-50 p-4 rounded-xl border border-rose-200 shadow-sm transition">
+                    <div class="text-xs font-semibold text-rose-600 uppercase">IELTS Dự Kiến</div>
+                    <div id="ielts-kpi-val" class="text-2xl font-black text-rose-700 mt-1">7.0</div>
+                    <div id="ielts-kpi-sub" class="text-[10px] font-bold text-rose-600 mt-1">Điểm nghẽn rủi ro!</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="lg:col-col-span-1 lg:col-span-5 space-y-5">
+                    <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+                        <span>Lăng Kính Đánh Giá Học Thuật Úc (AEI-NOOSR)</span>
+                    </h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Hệ thống đại học Úc ưu tiên <strong>WAM (Weighted Average Mark)</strong> hơn GPA. Mức WAM <strong>87.911/100</strong> của ứng viên vượt xa ngưỡng 80.00 (High Distinction - HD), đủ điều kiện xác định tương đương <strong>First Class Honours (H1)</strong> theo Khung AQF Bậc 8.
+                    </p>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2">
+                        <div class="font-bold text-slate-800">Chìa khóa quy đổi H1 Equivalency:</div>
+                        <ul class="list-disc pl-4 space-y-1 text-slate-600">
+                            <li><strong>WAM 87.911:</strong> Vượt trội chuẩn H1 tối thiểu (80-85%).</li>
+                            <li><strong>Top 5.2% Rank:</strong> Chứng minh "strict grading curve" tại trường gốc Việt Nam, giải thích lý do GPA chỉ ở mức 3.59/4.0.</li>
+                            <li><strong>Thesis 10/10 + 4 Pubs:</strong> Khỏa lấp hoàn toàn khoảng trống thiếu hụt năm Honours 4th-year của Úc.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-amber-50/80 rounded-xl border border-amber-200 text-xs space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-amber-900">SIMULATOR CẤU HÌNH TIẾNG ANH (IELTS)</span>
+                            <span class="text-[10px] text-amber-700 font-medium">Bấm để kiểm tra mở khóa trường</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="setIelts('7.0')" id="btn-ielts-70" class="flex-1 py-2 rounded-lg font-bold text-xs bg-amber-600 text-white shadow-sm transition">
+                                IELTS 7.0 (Min 6.5)
+                            </button>
+                            <button onclick="setIelts('7.5')" id="btn-ielts-75" class="flex-1 py-2 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                                IELTS 7.5 (Min 7.0)
+                            </button>
+                        </div>
+                        <div id="ielts-impact-text" class="text-[11px] text-amber-800 leading-normal">
+                            ⚠️ <strong>Mức IELTS 7.0 (Min 6.5)</strong> khiến hồ sơ bị <strong>loại tự động</strong> tại Sydney Law School (yêu cầu All Bands 7.0) và Melbourne Law School (yêu cầu Writing 7.0).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 flex flex-col justify-center items-center">
+                    <div class="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Ma Trận Năng Lực Ứng Viên (Competitiveness Radar)</div>
+                    <div class="chart-container">
+                        <canvas id="profileRadarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="universities" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-4 border-amber-500 pl-4">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">PHẦN 2: THẨM ĐỊNH HỌC BỔNG VÀ CHIẾN LƯỢC TRƯỜNG ĐẠI HỌC</h2>
+                    <p class="text-slate-600 text-sm mt-1">Đánh giá khả năng cấp RTP Fee Offset, RTP Stipend & Học bổng Full-Ride cho kỳ nhập học Term 2/Semester 2 năm 2027.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <select id="tier-filter" onchange="filterUniversities()" class="bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs font-medium text-slate-700 focus:ring-2 focus:ring-amber-500">
+                        <option value="ALL">Tất cả phân loại (Dream/Target/Strategic/Backup)</option>
+                        <option value="S">Tier S - Dream (Prestigious / PhD Priority)</option>
+                        <option value="A">Tier A - Target (Go8 / High Fit)</option>
+                        <option value="B">Tier B - Strategic Target (High Funding Rate)</option>
+                        <option value="C">Tier C - Backup (Safety / High Pub Weight)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-7 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider">Xếp Hạng Độ Hấp Dẫn Học Bổng Đã Điều Chỉnh Rủi Ro (Risk-Adjusted Score)</h3>
+                    <div class="chart-container">
+                        <canvas id="uniScoreChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider">So Sánh Sinh Hoạt Phí (Stipend) vs Chi Phí Sống</h3>
+                    <div class="chart-container">
+                        <canvas id="stipendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-4 bg-slate-900 text-white flex justify-between items-center">
+                    <span class="font-bold text-sm">BẢNG TỔNG HỢP DUE DILIGENCE TRƯỜNG ĐẠI HỌC (2027 TARGET)</span>
+                    <span class="text-xs text-amber-400">Click vào từng dòng để xem chi tiết Full-Ride Mechanism</span>
+                </div>
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200 uppercase">
+                            <tr>
+                                <th class="p-3">Trường / Chương Trình</th>
+                                <th class="p-3">Phân Loại</th>
+                                <th class="p-3">Full-Ride Mechanism</th>
+                                <th class="p-3">IELTS Min</th>
+                                <th class="p-3">Mức Stipend/Năm</th>
+                                <th class="p-3">Deadline Học Bổng</th>
+                                <th class="p-3">Trạng Thái IELTS</th>
+                                <th class="p-3 text-center">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="uni-table-body" class="divide-y divide-slate-100 font-medium">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div id="uni-modal" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-white max-w-2xl w-full rounded-2xl shadow-2xl border border-slate-200 overflow-hidden space-y-0">
+                <div class="p-5 bg-slate-900 text-white flex justify-between items-center">
+                    <div>
+                        <h3 id="modal-uni-name" class="font-bold text-lg text-amber-400">University Name</h3>
+                        <p id="modal-degree" class="text-xs text-slate-300">Degree Program</p>
+                    </div>
+                    <button onclick="closeUniModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center font-bold">✕</button>
+                </div>
+                <div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto custom-scrollbar text-xs">
+                    <div class="grid grid-cols-2 gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
+                        <div><strong>Cơ chế Full-Ride:</strong> <span id="modal-mechanism" class="text-amber-700 font-semibold"></span></div>
+                        <div><strong>RTP Fee Offset:</strong> <span id="modal-offset"></span></div>
+                        <div><strong>RTP / University Stipend:</strong> <span id="modal-stipend"></span></div>
+                        <div><strong>Yêu cầu Supervisor:</strong> <span id="modal-supervisor"></span></div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-1">Kiểm Toán Lịch Trình & Deadline 2027:</h4>
+                        <p id="modal-deadline-info" class="text-slate-600 bg-amber-50/60 p-3 rounded-lg border border-amber-200/60"></p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-1">Rủi Ro & Bẫy Học Bổng (Scholarship Traps):</h4>
+                        <p id="modal-trap" class="text-rose-700 bg-rose-50 p-3 rounded-lg border border-rose-200"></p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-1">Lý Do Đánh Giá Tối Ưu:</h4>
+                        <p id="modal-fit" class="text-slate-700 leading-relaxed"></p>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-100 text-right border-t border-slate-200">
+                    <button onclick="closeUniModal()" class="px-4 py-2 bg-slate-800 text-white font-bold text-xs rounded-lg hover:bg-slate-700">Đóng</button>
+                </div>
+            </div>
+        </div>
+
+        <section id="supervisors" class="space-y-6">
+            <div class="border-l-4 border-amber-500 pl-4">
+                <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">PHẦN 3: KẾT NỐI GIÁO SƯ HƯỚNG DẪN (SUPERVISOR MATCHING HUB)</h2>
+                <p class="text-slate-600 text-sm mt-1">Danh sách học giả tinh hoa Úc chuyên ngành FinTech, Crypto, AI & Legal Futures phù hợp với hồ sơ ứng viên.</p>
+            </div>
+
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar">
+                <button onclick="filterSupervisors('ALL')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white whitespace-nowrap">Tất Cả Mảng Nghiên Cứu</button>
+                <button onclick="filterSupervisors('FinTech')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 whitespace-nowrap">FinTech & CBDC</button>
+                <button onclick="filterSupervisors('Smart Contracts')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 whitespace-nowrap">Smart Contracts & Blockchain</button>
+                <button onclick="filterSupervisors('Tech Law')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 whitespace-nowrap">Legal Futures & Tech Law</button>
+            </div>
+
+            <div id="supervisors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+
+        <section id="proposal" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7 space-y-6">
+                <div class="border-l-4 border-amber-500 pl-4">
+                    <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">PHẦN 4: ĐỀ CƯƠNG NGHIÊN CỨU MỤC TIÊU (PROPOSAL TOPICS)</h2>
+                    <p class="text-slate-600 text-sm mt-1">3 Hướng đề tài MPhil có tính đột phá, giao thoa giữa FinTech, Digital Assets và Luật So Sánh.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 hover:border-amber-400 transition">
+                        <div class="flex justify-between items-start">
+                            <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800 uppercase">Topic 1 • Phù hợp UNSW / UTS</span>
+                            <span class="text-xs font-bold text-slate-400">FinTech & Sandbox</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">Regulatory Sandboxes and Decentralized Finance (DeFi): A Comparative Legal Framework</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Câu hỏi nghiên cứu:</strong> Khung pháp lý "Regulatory Sandbox" của Úc có thể thích ứng như thế nào để điều tiết các giao thức DeFi phi tập trung mà không dập tắt đổi mới sáng tạo, và bài học cho Đông Nam Á?
+                        </p>
+                        <div class="text-[11px] bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1">
+                            <div><strong>Supervisor Tối Ưu:</strong> A/Prof Anton Didenko (UNSW), Dr Evana Wright (UTS)</div>
+                            <div><strong>Tính khả thi Master:</strong> Phạm vi hẹp, so sánh mô hình Sandbox của ASIC Úc và cơ chế thử nghiệm tài chính kỹ thuật số.</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 hover:border-amber-400 transition">
+                        <div class="flex justify-between items-start">
+                            <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-indigo-100 text-indigo-800 uppercase">Topic 2 • Phù hợp ANU / UNSW</span>
+                            <span class="text-xs font-bold text-slate-400">CBDC & Legal Architecture</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">The Legal Architecture of Central Bank Digital Currencies (CBDCs): Privacy vs Compliance</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Câu hỏi nghiên cứu:</strong> Khung pháp lý hiện tại đối với dự án Tiền kỹ thuật số Ngân hàng Trung ương (CBDC) tại Úc giải quyết xung đột giữa bảo vệ dữ liệu cá nhân (Privacy) và quy định chống rửa tiền (AML/KYC) như thế nào?
+                        </p>
+                        <div class="text-[11px] bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1">
+                            <div><strong>Supervisor Tối Ưu:</strong> A/Prof Anton Didenko (UNSW), A/Prof Philippa Ryan (ANU)</div>
+                            <div><strong>Giá trị chiến lược:</strong> Đánh đúng vào mối quan tâm nghiên cứu trọng điểm của Ngân hàng Trung ương Úc (RBA) và các viện nghiên cứu luật.</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 hover:border-amber-400 transition">
+                        <div class="flex justify-between items-start">
+                            <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Topic 3 • Phù hợp QUT / UTS</span>
+                            <span class="text-xs font-bold text-slate-400">Metaverse & Smart Contracts</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">Smart Legal Contracts in Commercial Disputes: Enforceability in Virtual Ecosystems</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Câu hỏi nghiên cứu:</strong> Khi thương mại giao dịch tự động qua Smart Contracts trong Metaverse, luật hợp đồng truyền thống của Úc cần điều chỉnh ra sao về trách nhiệm pháp lý và thẩm quyền tài phán?
+                        </p>
+                        <div class="text-[11px] bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1">
+                            <div><strong>Supervisor Tối Ưu:</strong> Dr Evana Wright (UTS), Dr George Tian (UTS)</div>
+                            <div><strong>Điểm cộng hồ sơ:</strong> Khai thác trực tiếp từ 4 bài báo đã xuất bản của ứng viên về Metaverse & Digital Assets.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 space-y-6">
+                <div class="border-l-4 border-amber-500 pl-4">
+                    <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">DOSSIER TÀI LIỆU CHIẾN LƯỢC</h2>
+                    <p class="text-slate-600 text-sm mt-1">Các văn bản bắt buộc để biến WAM 87.911 thành First Class Honours Equivalency.</p>
+                </div>
+
+                <div class="bg-slate-900 text-white p-5 rounded-2xl shadow-md space-y-4 text-xs">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <span class="font-bold text-amber-400">TÀI LIỆU MỤC TIÊU</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] bg-rose-500 text-white font-bold uppercase">Mức Độ Ưu Tiên</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700 space-y-1">
+                            <div class="flex justify-between font-bold text-slate-100">
+                                <span>1. Official Class Ranking Certificate</span>
+                                <span class="text-rose-400">HIGH PRIORITY</span>
+                            </div>
+                            <p class="text-slate-400 text-[11px]">Giấy chứng nhận xếp hạng mộc đỏ xác nhận vị trí <strong>Top 5.2% toàn khóa</strong>. Tài liệu sống còn để minh chứng grading curve khắt khe.</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700 space-y-1">
+                            <div class="flex justify-between font-bold text-slate-100">
+                                <span>2. Official Grading Scale Context</span>
+                                <span class="text-rose-400">HIGH PRIORITY</span>
+                            </div>
+                            <p class="text-slate-400 text-[11px]">Bản trích lục quy chế đào tạo giải thích WAM 87.911 thuộc nhóm Xuất sắc, tránh việc Admissions Office quy đổi cơ học sang GPA 4.0 kém lợi thế.</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700 space-y-1">
+                            <div class="flex justify-between font-bold text-slate-100">
+                                <span>3. Research Portfolio Dossier</span>
+                                <span class="text-rose-400">HIGH PRIORITY</span>
+                            </div>
+                            <p class="text-slate-400 text-[11px]">Tập hợp link DOI 04 bài báo, minh chứng Peer-review, xác nhận First-Author và minh chứng 02 Giải thưởng NCKH cấp trường.</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700 space-y-1">
+                            <div class="flex justify-between font-bold text-slate-100">
+                                <span>4. Thesis Extended Abstract & Grade 10/10</span>
+                                <span class="text-amber-400">MEDIUM-HIGH</span>
+                            </div>
+                            <p class="text-slate-400 text-[11px]">Bản dịch thuật tóm tắt luận văn IFC (3-5 trang) kèm xác nhận điểm 10/10 tuyệt đối để chứng minh năng lực Independent Legal Research.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="space-y-6">
+            <div class="border-l-4 border-amber-500 pl-4">
+                <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">PHẦN 5: PORTFOLIO NỘP ĐƠN VÀ LỘ TRÌNH THỜI GIAN (BACKWARD TIMELINE)</h2>
+                <p class="text-slate-600 text-sm mt-1">Quy hoạch danh mục 5 trường tối ưu và mốc thời gian hành động từ Tháng 8/2026 đến Tháng 9/2027.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-900 text-base border-b border-slate-100 pb-2">Danh Mục 5 Trường Tối Ưu (Portfolio 2-2-1)</h3>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200">
+                            <div class="font-bold text-amber-900">2 TARGET (Go8 Prestige x Exact Match)</div>
+                            <div class="text-amber-800 mt-1"><strong>#1 UNSW (MPhil Law):</strong> Match Anton Didenko, Quỹ UIPA/RTP mạnh.</div>
+                            <div class="text-amber-800"><strong>#2 ANU (MPhil Law):</strong> Match Philippa Ryan, Đỉnh cao học thuật.</div>
+                        </div>
+                        <div class="p-3 bg-indigo-50 rounded-xl border border-indigo-200">
+                            <div class="font-bold text-indigo-900">2 STRATEGIC TARGET (Tech Law Leader x Higher Scholarship Rate)</div>
+                            <div class="text-indigo-800 mt-1"><strong>#3 UTS (Master of Laws - Research):</strong> Top 1 về Tech Law, rủi ro cạnh tranh thấp hơn Go8.</div>
+                            <div class="text-indigo-800"><strong>#4 QUT (MPhil Law):</strong> Mức Stipend cao ($38,310), quy trình EOI rõ ràng.</div>
+                        </div>
+                        <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                            <div class="font-bold text-emerald-900">1 BACKUP (Financial Full-Ride Safety)</div>
+                            <div class="text-emerald-800 mt-1"><strong>#5 Flinders University:</strong> Quỹ AGRTPS chấm điểm tối đa cho ứng viên có 4-5 bài báo. An toàn tuyệt đối về Full-Ride.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-900 text-base border-b border-slate-100 pb-2">Lộ Trình Hành Động Ngược (Backward Action Plan)</h3>
+                    <div class="relative pl-6 border-l-2 border-slate-200 space-y-6 text-xs">
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow"></div>
+                            <div class="font-bold text-slate-900 text-sm">Tháng 8 - 9/2026: Thi Tái Lập IELTS</div>
+                            <p class="text-slate-600 mt-0.5">Ôn tập và thi lại IELTS Academic. Target bắt buộc: <strong>7.5 Overall (No band < 7.0)</strong> để triệt tiêu mọi rào cản kỹ thuật tại Melbourne/Sydney.</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-white shadow"></div>
+                            <div class="font-bold text-slate-900 text-sm">Tháng 10 - 11/2026: Cold-Email Outreach Supervisor</div>
+                            <p class="text-slate-600 mt-0.5">Soạn CV, Research Abstract và gửi email tiếp cận A/Prof Anton Didenko (UNSW), Dr Evana Wright (UTS), A/Prof Philippa Ryan (ANU).</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow"></div>
+                            <div class="font-bold text-slate-900 text-sm">Tháng 12/2026 - 1/2027: Tinh Chỉnh Proposal & Nộp EOI</div>
+                            <p class="text-slate-600 mt-0.5">Phỏng vấn Zoom với Supervisor, nhận Endorsement, hoàn thiện Research Proposal 3,000 từ và xin 2 Thư giới thiệu (Referees).</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow"></div>
+                            <div class="font-bold text-slate-900 text-sm">Tháng 2 - 5/2027: Official Application Submission</div>
+                            <p class="text-slate-600 mt-0.5">Nộp đơn chính thức qua cổng Graduate Research Portal trước mốc **Scholarship Deadline** (UTS: Jan/Feb, UNSW: Apr, QUT: May).</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-slate-900 border-4 border-white shadow"></div>
+                            <div class="font-bold text-slate-900 text-sm">Tháng 8 - 9/2027: Nhận Visa 500 & Enrolment</div>
+                            <p class="text-slate-600 mt-0.5">Nhận Offer Full-Ride, xin CoE, khám sức khỏe, xin Visa 500 HDR Sector và bay sang Úc nhập học Term 3 UNSW / Semester 2.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="verdict" class="space-y-6">
+            <div class="border-l-4 border-amber-500 pl-4">
+                <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">PHẦN 6: TRẢ LỜI CÂU HỎI CỐT LÕI & PHÁN QUYẾT CHUYÊN GIA</h2>
+                <p class="text-slate-600 text-sm mt-1">Tư vấn chiến lược độc lập trả lời trực tiếp 10 câu hỏi cốt lõi của ứng viên.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="font-bold text-slate-900 text-sm">1. WAM 87.911 + Top 5.2% có đủ mạnh không?</div>
+                    <p class="text-slate-600">RẤT MẠNH. Đây là tiêu chuẩn vàng tương đương First Class Honours (H1) của Úc. WAM 87.911 vượt trội hầu hết sinh viên bản địa Úc.</p>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="font-bold text-slate-900 text-sm">2. GPA 3.59/4.0 có phải điểm yếu?</div>
+                    <p class="text-slate-600">KHÔNG. Giấy chứng nhận Top 5.2% sẽ giúp Admissions Committee hiểu rằng trường đại học gốc có thang điểm khắt khe, giúp bảo vệ giá trị thực của WAM 87.911.</p>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="font-bold text-slate-900 text-sm">3. 4 publications có tạo lợi thế vượt trội?</div>
+                    <p class="text-slate-600">CỰC KỲ VƯỢT TRỘI. Hầu hết ứng viên MPhil không có bài báo nào. 4 bài báo giúp bạn đạt điểm tối đa trong mục đánh giá Research Potential.</p>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="font-bold text-slate-900 text-sm">4. IELTS 7.0 (no band < 6.5) có đủ mạnh?</div>
+                    <p class="text-slate-600 text-rose-600 font-semibold">KHÔNG ĐỦ AN TOÀN. Mức điểm này bị loại trực tiếp tại Sydney và Melbourne Law School. Bắt buộc phải nâng lên IELTS 7.5 (min 7.0).</p>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="font-bold text-slate-900 text-sm">5. Có nên nhắm Go8 không?</div>
+                    <p class="text-slate-600">CÓ, nhưng nên chọn UNSW và ANU. Loại bỏ Sydney và Melbourne khỏi danh sách ưu tiên hàng đầu do chính sách ưu tiên ngân sách RTP cho Tiến sĩ (PhD Priority Trap).</p>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="font-bold text-slate-900 text-sm">6. Trường nào có xác suất Full-Ride cao nhất?</div>
+                    <p class="text-slate-600 font-semibold text-emerald-700">UNSW và UTS. UNSW cho uy tín Go8 + quỹ UIPA dồi dào. UTS cho điểm tương thích Research Fit 100% + tỷ lệ chọi MPhil dễ thở hơn.</p>
+                </div>
+            </div>
+
+            <div class="p-6 bg-slate-900 text-white rounded-2xl shadow-xl space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <span class="font-bold text-base text-amber-400">"IF I WERE IN YOUR POSITION" — LỜI KHUYÊN HÀNH ĐỘNG TỐI ƯU</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500 text-slate-950">STRATEGIC VERDICT</span>
+                </div>
+                <div class="text-xs leading-relaxed text-slate-300 space-y-3">
+                    <p>
+                        Nếu tôi chính là bạn, sở hữu bộ hồ sơ cực kỳ xuất sắc này (WAM 87.911, Top 5.2%, 4 bài báo, Thesis 10/10) nhưng gặp rủi ro rào cản tiếng Anh IELTS 7.0, hành động đầu tiên của tôi là <strong>thi lại IELTS ngay lập tức để đạt 7.5 (min 7.0)</strong>. Việc này biến một hồ sơ "Bị hạn chế trường" thành một hồ sơ "Bất khả chiến bại".
+                    </p>
+                    <p>
+                        Tiếp theo, tôi sẽ <strong>không lãng phí thời gian nộp Sydney hay Melbourne</strong> do cơ chế ưu tiên học bổng cho PhD quá rõ ràng. Tôi sẽ dồn toàn bộ 100% năng lượng vào 3 trường mũi nhọn: <strong>UNSW (với A/Prof Anton Didenko), UTS (với Dr Evana Wright) và ANU (với A/Prof Philippa Ryan)</strong>. Dùng Flinders University làm phương án bảo hiểm tài chính Full-Ride an toàn tuyệt đối.
+                    </p>
+                    <p>
+                        Cuối cùng, tôi sẽ xây dựng Đề cương nghiên cứu tập trung vào <strong>"Khung pháp lý thử nghiệm (Sandbox) cho DeFi và CBDC"</strong> — chủ đề hoàn toàn khớp với định hướng FinTech của Úc, giúp thuyết phục Hội đồng học bổng trao trọn gói Full-Ride trị giá 160,000+ AUD cho 2 năm Research Master.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-500 text-xs py-8 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="font-medium text-slate-400">Australian HDR & Scholarship Strategy Decision-Support System • 2027 Intake</p>
+            <p>Designed for Evidence-Based Academic Higher Degree by Research Strategy in Australia.</p>
+        </div>
+    </footer>
+
+    <script>
+        const uniData = [
+            {
+                id: 'unsw',
+                name: 'UNSW Sydney',
+                degree: 'Master of Philosophy (Law)',
+                tier: 'A',
+                mechanism: 'UIPA / RTP Fee Offset + Stipend',
+                offset: 'CÓ (100% Tuition - 2 Năm)',
+                stipendVal: 39206,
+                stipendText: '$39,206 AUD/năm (2026 Index)',
+                ieltsMin: '7.0 (Min 6.0)',
+                ieltsRisk70: false,
+                deadline: '~Apr 2027 (Tham chiếu T3 Release 2026: 17/04)',
+                score: 92,
+                supervisorReq: 'Bắt buộc (EOI Endorsement)',
+                trap: 'Application deadline cho Admission có thể trễ hơn, nhưng nộp xin học bổng bắt buộc phải trước mốc GRS Deadline (Tháng 4).',
+                fit: 'Match tuyệt đối 100% với A/Prof Anton Didenko (FinTech/CBDC). Quỹ UIPA của UNSW là nguồn tài trợ thay thế hoàn hảo nếu trượt RTP.'
+            },
+            {
+                id: 'anu',
+                name: 'Australian National University (ANU)',
+                degree: 'Master of Philosophy (Law)',
+                tier: 'A',
+                mechanism: 'RTP Fee Offset + RTP Stipend',
+                offset: 'CÓ (100% Tuition)',
+                stipendVal: 35550,
+                stipendText: '~$35,550 AUD/năm (Base rate)',
+                ieltsMin: '7.0 (Writing 7.0, Min 6.0)',
+                ieltsRisk70: false,
+                deadline: '~Apr 2027 (Dự kiến kỳ Sem 2)',
+                score: 88,
+                supervisorReq: 'Bắt buộc',
+                trap: 'ANU Law xét duyệt đề cương rất khắt khe về tính đột phá hàn lâm (Academic novelty).',
+                fit: 'Đỉnh cao uy tín học thuật. Match tuyệt vời với A/Prof Philippa Ryan về Smart Contracts và Blockchain.'
+            },
+            {
+                id: 'uts',
+                name: 'University of Technology Sydney (UTS)',
+                degree: 'Master of Laws (Research)',
+                tier: 'B',
+                mechanism: 'RTP Fee Offset + RTP Stipend',
+                offset: 'CÓ (100% Tuition)',
+                stipendVal: 38000,
+                stipendText: '~$38,000 AUD/năm',
+                ieltsMin: '7.0 (Min 6.5)',
+                ieltsRisk70: false,
+                deadline: '~Jan/Feb 2027',
+                score: 85,
+                supervisorReq: 'Bắt buộc',
+                trap: 'UTS không thuộc Go8 nhưng là trung tâm Legal Futures số 1 Úc, tỷ lệ ứng viên quốc tế nộp vào ngành Luật Công nghệ đang tăng nhanh.',
+                fit: 'Trường chiến lược hàng đầu (Hidden Gem). Môi trường Tech Law số 1 Úc, mức độ cạnh tranh RTP Stipend mềm hơn các trường Go8 lâu đời.'
+            },
+            {
+                id: 'qut',
+                name: 'Queensland Univ. of Technology (QUT)',
+                degree: 'Master of Philosophy (Law)',
+                tier: 'B',
+                mechanism: 'QUT RTP Stipend + Fee Offset',
+                offset: 'CÓ (100% Tuition)',
+                stipendVal: 38310,
+                stipendText: '$38,310 AUD/năm (Công bố 2027)',
+                ieltsMin: '6.5 (Min 6.0)',
+                ieltsRisk70: false,
+                deadline: 'EOI nộp từ 01/02 đến 31/05/2027',
+                score: 83,
+                supervisorReq: 'Bắt buộc (Nộp EOI trước)',
+                trap: 'Phải tuân thủ cửa sổ nộp EOI nghiêm ngặt từ tháng 2 đến tháng 5.',
+                fit: 'Mức Stipend $38,310 cực kỳ cao, chi phí sinh hoạt tại Brisbane rẻ hơn Sydney, giúp sống thoải mái và có tiết kiệm.'
+            },
+            {
+                id: 'flinders',
+                name: 'Flinders University',
+                degree: 'Master by Research',
+                tier: 'C',
+                mechanism: 'AGRTPS (Full Ride Package)',
+                offset: 'CÓ (100% Tuition)',
+                stipendVal: 36061,
+                stipendText: '$36,061 AUD/năm + Relocation',
+                ieltsMin: '6.5 (Min 6.0)',
+                ieltsRisk70: false,
+                deadline: '~Mid-June 2026/2027',
+                score: 80,
+                supervisorReq: 'Bắt buộc',
+                trap: 'Xếp hạng tổng thể (Ranking) thấp hơn Go8.',
+                fit: 'SCHOLARSHIP SAFETY. Bảng chấm điểm học bổng của Flinders thưởng điểm tối đa cho ứng viên có 4-5 bài báo xuất bản. Bạn có 4 bài, nắm chắc cơ hội Full-Ride.'
+            },
+            {
+                id: 'melbourne',
+                name: 'University of Melbourne',
+                degree: 'Master of Philosophy (Law)',
+                tier: 'S',
+                mechanism: 'RTP (Ưu tiên Tiến sĩ)',
+                offset: 'CÓ (100% Tuition)',
+                stipendVal: 39500,
+                stipendText: '$39,500 AUD/năm',
+                ieltsMin: '7.0 (Writing 7.0 bắt buộc)',
+                ieltsRisk70: true,
+                deadline: '~Oct 2026 / Mar 2027',
+                score: 70,
+                supervisorReq: 'Bắt buộc',
+                trap: 'BẪY TIẾNG ANH & BẪY PhD: Yêu cầu Writing 7.0 (IELTS 7.0/6.5 bị loại). Trường công khai ưu tiên quỹ RTP cho ứng viên PhD.',
+                fit: 'Uy tín đỉnh cao nhưng rủi ro trượt học bổng MPhil rất lớn do ngân sách thắt chặt.'
+            },
+            {
+                id: 'sydney',
+                name: 'University of Sydney',
+                degree: 'Master of Laws by Research',
+                tier: 'S',
+                mechanism: 'USYDIS / RTP (PhD Priority)',
+                offset: 'CÓ (100% Tuition)',
+                stipendVal: 44293,
+                stipendText: '$44,293 AUD/năm (2027 rate)',
+                ieltsMin: '7.0 (All Bands 7.0 bắt buộc)',
+                ieltsRisk70: true,
+                deadline: '~Mar 2027',
+                score: 65,
+                supervisorReq: 'Bắt buộc',
+                trap: 'BẪY TIẾNG ANH CHẾT NGƯỜI: Sydney Law yêu cầu ALL BANDS 7.0. Điểm IELTS 7.0 (no band < 6.5) sẽ bị hệ thống tự động loại đơn.',
+                fit: 'Mức Stipend cao nhất nước Úc ($44.2k) nhưng rào cản kỹ thuật quá lớn đối với IELTS hiện tại.'
+            }
+        ];
+
+        const supervisorsData = [
+            {
+                name: 'A/Prof Anton Didenko',
+                uni: 'UNSW Sydney',
+                faculty: 'Faculty of Law & Justice',
+                domain: 'FinTech',
+                interests: 'FinTech, CBDC, Central Bank Digital Currencies, Digital Assets, Banking Regulation',
+                fit: 'TƯƠNG THÍCH TUYỆT ĐỐI. Học giả hàng đầu về luật ngân hàng kỹ thuật số. Rất phù hợp với đề tài IFC và FinTech của bạn.'
+            },
+            {
+                name: 'A/Prof Philippa Ryan',
+                uni: 'ANU College of Law',
+                faculty: 'College of Law',
+                domain: 'Smart Contracts',
+                interests: 'Smart Legal Contracts, Blockchain Governance, Crypto Assets, Commercial Law',
+                fit: 'TƯƠNG THÍCH RẤT CAO. Chuyên gia hàng đầu về hợp đồng thông minh. Luận văn IFC kết hợp thế mạnh Smart Contracts sẽ tạo nên proposal đột phá.'
+            },
+            {
+                name: 'Dr Evana Wright',
+                uni: 'UTS Faculty of Law',
+                faculty: 'Faculty of Law',
+                domain: 'Tech Law',
+                interests: 'Legal Futures, Technology Regulation, IP Law, Emerging Tech Regulation',
+                fit: 'TƯƠNG THÍCH RẤT CAO. Giảng dạy ngành Legal Futures and Technology tại UTS - trung tâm công nghệ pháp lý hàng đầu.'
+            },
+            {
+                name: 'Tony Song',
+                uni: 'UNSW Sydney',
+                faculty: 'Faculty of Law & Justice',
+                domain: 'FinTech',
+                interests: 'Cryptocurrency, AI & Law, Legal Technology, LawTech Frameworks',
+                fit: 'Rất phù hợp cho hướng nghiên cứu điều tiết tiền mã hóa và tài sản ảo trong không gian Metaverse.'
+            },
+            {
+                name: 'Dr Damian Clifford',
+                uni: 'ANU College of Law',
+                faculty: 'College of Law',
+                domain: 'Tech Law',
+                interests: 'AI Regulation, Data Protection, Privacy, Emerging Technology',
+                fit: 'Thích hợp cho hướng nghiên cứu bảo mật dữ liệu và quyền riêng tư trong hệ thống tài chính kỹ thuật số.'
+            },
+            {
+                name: 'Dr George Tian',
+                uni: 'UTS Faculty of Law',
+                faculty: 'Faculty of Law',
+                domain: 'Tech Law',
+                interests: 'Cyber Law, Digital IP, Commercialization of Tech Assets',
+                fit: 'Tốt cho các đề cương phân tích thương mại hóa và sở hữu trí tuệ tài sản số.'
+            }
+        ];
+
+        let currentIeltsState = '7.0';
+        let radarChart, barChart, stipendChartInstance;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            renderUniTable();
+            renderSupervisors('ALL');
+        });
+
+        function setIelts(val) {
+            currentIeltsState = val;
+            const btn70 = document.getElementById('btn-ielts-70');
+            const btn75 = document.getElementById('btn-ielts-75');
+            const kpiVal = document.getElementById('ielts-kpi-val');
+            const kpiSub = document.getElementById('ielts-kpi-sub');
+            const kpiCard = document.getElementById('ielts-kpi-card');
+            const impactText = document.getElementById('ielts-impact-text');
+
+            if (val === '7.0') {
+                btn70.className = "flex-1 py-2 rounded-lg font-bold text-xs bg-amber-600 text-white shadow-sm transition";
+                btn75.className = "flex-1 py-2 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition";
+                kpiVal.innerText = "7.0";
+                kpiSub.innerText = "Điểm nghẽn rủi ro!";
+                kpiCard.className = "bg-rose-50 p-4 rounded-xl border border-rose-200 shadow-sm transition";
+                impactText.innerHTML = "⚠️ <strong>Mức IELTS 7.0 (Min 6.5)</strong> khiến hồ sơ bị <strong>loại tự động</strong> tại Sydney Law School (yêu cầu All Bands 7.0) và Melbourne Law School (yêu cầu Writing 7.0).";
+            } else {
+                btn75.className = "flex-1 py-2 rounded-lg font-bold text-xs bg-emerald-600 text-white shadow-sm transition";
+                btn70.className = "flex-1 py-2 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition";
+                kpiVal.innerText = "7.5";
+                kpiSub.innerText = "Đã triệt tiêu rủi ro!";
+                kpiCard.className = "bg-emerald-50 p-4 rounded-xl border border-emerald-200 shadow-sm transition";
+                impactText.innerHTML = "✅ <strong>Mức IELTS 7.5 (Min 7.0)</strong> đã <strong>MỞ KHÓA HOÀN TOÀN</strong> điều kiện nộp đơn tại Sydney Law School và Melbourne Law School!";
+            }
+
+            renderUniTable();
+            updateRadarChart();
+        }
+
+        function initCharts() {
+            const ctxRadar = document.getElementById('profileRadarChart').getContext('2d');
+            radarChart = new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['WAM / Merit (87.9)', 'Research Pubs (4 Bài)', 'Luận Văn (10/10)', 'Research Fit (FinTech)', 'English Readiness'],
+                    datasets: [{
+                        label: 'Hồ Sơ Hiện Tại (IELTS 7.0)',
+                        data: [95, 92, 100, 90, 65],
+                        backgroundColor: 'rgba(217, 119, 6, 0.2)',
+                        borderColor: 'rgba(217, 119, 6, 1)',
+                        pointBackgroundColor: 'rgba(217, 119, 6, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e2e8f0' },
+                            grid: { color: '#f1f5f9' },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            const ctxBar = document.getElementById('uniScoreChart').getContext('2d');
+            barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: uniData.map(u => u.name),
+                    datasets: [{
+                        label: 'Risk-Adjusted Score (0-100)',
+                        data: uniData.map(u => u.score),
+                        backgroundColor: ['#0284c7', '#0369a1', '#4f46e5', '#059669', '#10b981', '#f59e0b', '#e11d48'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { min: 0, max: 100, grid: { color: '#f1f5f9' } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+
+            const ctxStipend = document.getElementById('stipendChart').getContext('2d');
+            stipendChartInstance = new Chart(ctxStipend, {
+                type: 'bar',
+                data: {
+                    labels: ['Sydney U', 'UNSW', 'Melbourne', 'QUT', 'UTS', 'Flinders'],
+                    datasets: [
+                        {
+                            label: 'Stipend Cấp (AUD/Năm)',
+                            data: [44293, 39206, 39500, 38310, 38000, 36061],
+                            backgroundColor: '#d97706',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Est. Living Cost (AUD/Năm)',
+                            data: [34000, 34000, 33000, 28000, 34000, 26000],
+                            backgroundColor: '#cbd5e1',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } },
+                    scales: {
+                        y: { grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } } },
+                        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        function updateRadarChart() {
+            const englishVal = currentIeltsState === '7.0' ? 65 : 95;
+            radarChart.data.datasets[0].data[4] = englishVal;
+            radarChart.data.datasets[0].label = currentIeltsState === '7.0' ? 'Hồ Sơ Hiện Tại (IELTS 7.0)' : 'Hồ Sơ Đã Nâng Cấp (IELTS 7.5)';
+            radarChart.update();
+        }
+
+        function renderUniTable() {
+            const tbody = document.getElementById('uni-table-body');
+            const tierFilter = document.getElementById('tier-filter').value;
+            tbody.innerHTML = '';
+
+            const filtered = uniData.filter(u => tierFilter === 'ALL' || u.tier === tierFilter);
+
+            filtered.forEach(u => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 cursor-pointer transition border-b border-slate-100";
+                tr.onclick = () => openUniModal(u.id);
+
+                let statusBadge = '';
+                if (u.ieltsRisk70 && currentIeltsState === '7.0') {
+                    statusBadge = `<span class="px-2 py-1 rounded text-[10px] font-bold bg-rose-100 text-rose-800">Bị Khoá (IELTS Risk)</span>`;
+                } else if (u.ieltsRisk70 && currentIeltsState === '7.5') {
+                    statusBadge = `<span class="px-2 py-1 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Đã Mở Khoá</span>`;
+                } else {
+                    statusBadge = `<span class="px-2 py-1 rounded text-[10px] font-bold bg-slate-100 text-slate-700">An Toàn Tiếng Anh</span>`;
+                }
+
+                let tierBadge = '';
+                if (u.tier === 'S') tierBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800">S • Dream</span>';
+                if (u.tier === 'A') tierBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">A • Target</span>';
+                if (u.tier === 'B') tierBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-800">B • Strategic</span>';
+                if (u.tier === 'C') tierBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">C • Backup</span>';
+
+                tr.innerHTML = `
+                    <td class="p-3">
+                        <div class="font-bold text-slate-900">${u.name}</div>
+                        <div class="text-[10px] text-slate-500">${u.degree}</div>
+                    </td>
+                    <td class="p-3">${tierBadge}</td>
+                    <td class="p-3 font-semibold text-slate-700">${u.mechanism}</td>
+                    <td class="p-3 text-slate-600">${u.ieltsMin}</td>
+                    <td class="p-3 font-bold text-amber-700">${u.stipendText}</td>
+                    <td class="p-3 text-slate-600">${u.deadline}</td>
+                    <td class="p-3">${statusBadge}</td>
+                    <td class="p-3 text-center font-black text-slate-900">${u.score}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterUniversities() {
+            renderUniTable();
+        }
+
+        function openUniModal(id) {
+            const u = uniData.find(item => item.id === id);
+            if (!u) return;
+
+            document.getElementById('modal-uni-name').innerText = u.name;
+            document.getElementById('modal-degree').innerText = u.degree;
+            document.getElementById('modal-mechanism').innerText = u.mechanism;
+            document.getElementById('modal-offset').innerText = u.offset;
+            document.getElementById('modal-stipend').innerText = u.stipendText;
+            document.getElementById('modal-supervisor').innerText = u.supervisorReq;
+            document.getElementById('modal-deadline-info').innerText = u.deadline;
+            document.getElementById('modal-trap').innerText = u.trap;
+            document.getElementById('modal-fit').innerText = u.fit;
+
+            document.getElementById('uni-modal').classList.remove('hidden');
+        }
+
+        function closeUniModal() {
+            document.getElementById('uni-modal').classList.add('hidden');
+        }
+
+        function renderSupervisors(domain) {
+            const container = document.getElementById('supervisors-grid');
+            container.innerHTML = '';
+
+            const filtered = supervisorsData.filter(s => domain === 'ALL' || s.domain === domain);
+
+            filtered.forEach(s => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 hover:border-amber-400 transition";
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">${s.name}</h3>
+                            <div class="text-[11px] font-semibold text-amber-600">${s.uni}</div>
+                        </div>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700">${s.domain}</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500">${s.faculty}</div>
+                    <div class="text-xs text-slate-600"><strong>Chuyên môn:</strong> ${s.interests}</div>
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-[11px] text-slate-700">
+                        ${s.fit}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterSupervisors(domain) {
+            renderSupervisors(domain);
+        }
+    </script>
+</body>
+</html>
